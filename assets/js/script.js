@@ -14,7 +14,7 @@ function retrieveAndAppendData() {
   
   retrieveAndAppendData();
 function getWeatherApi() {
-    const getLatLon = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchRequest.val() + '&limit=1&appid=2a491b6c9ae1aaa4229bf858b10b21d5'
+    const getLatLon = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchRequest.val() + '&limit=1&appid=2a491b6c9ae1aaa4229bf858b10b21d5'
     fetch(getLatLon)
     .then(function(response) {
         return response.json()
@@ -41,7 +41,7 @@ function getWeatherApi() {
 
 
         console.log(latAndLon[0])
-        const requestUrl = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + latAndLon[0] + '&lon=' + latAndLon[1] + '&appid=2a491b6c9ae1aaa4229bf858b10b21d5&units=imperial'
+        const requestUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latAndLon[0] + '&lon=' + latAndLon[1] + '&appid=2a491b6c9ae1aaa4229bf858b10b21d5&units=imperial'
         return fetch(requestUrl)
     })
     .then(function(response){
