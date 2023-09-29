@@ -3,6 +3,16 @@ const searchBtn = $('#searchBtn')
 const prevSearch = $('#prevSearch')
 let latAndLon
 
+function retrieveAndAppendData() {
+    for (let i = 0; i < localStorage.length; i++) {
+      const cityName = localStorage.key(i);  
+      if (!$(`#prevSearch button[val='${cityName}']`).length > 0) {
+            $('#prevSearch').append(`<button val='${cityName}'>${cityName}</button>`);
+        }
+    }
+}
+  
+  retrieveAndAppendData();
 function getWeatherApi() {
     const getLatLon = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchRequest.val() + '&limit=1&appid=2a491b6c9ae1aaa4229bf858b10b21d5'
     fetch(getLatLon)
@@ -18,14 +28,16 @@ function getWeatherApi() {
             lat = data[0].lat,
             lon = data[0].lon
         ]
-        if($('#prevSearch').find(`#${searchRequest.val()}`).length = 0){
-        } else {
-        const upperCase = searchRequest.val()
-  		const cityName = upperCase.replace(/\b[a-z]/g, function(cityName) {
-            return cityName.toUpperCase()
-        })
-        $('#prevSearch').append(`<button val='${searchRequest.val}>${cityName}'${searchRequest.val}>${cityName}</button>`)
-    }
+
+        
+        const upperCase = searchRequest.val();
+        const cityName = upperCase.replace(/\b[a-z]/g, function (cityName) {
+          return cityName.toUpperCase();
+        });
+      if (!$(`#prevSearch button[val='${searchRequest.val()}']`).length > 0) {
+  $('#prevSearch').append(`<button val='${cityName}'>${cityName}</button>`);
+  localStorage.setItem(cityName, cityName)
+}
 
 
         console.log(latAndLon[0])
@@ -72,3 +84,5 @@ prevSearch.on('click', 'button', function(){
     getWeatherApi()
     return searchRequest
 })
+
+retrieveAndAppendData();
