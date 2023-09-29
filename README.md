@@ -7,5 +7,5 @@ I worked on this project to become more familiar with API calls (not css as you 
 ##Usage
 You can use this at https://nrueckert.github.io/weatherWidget/ 
 
-#License
+##License
 N/A
